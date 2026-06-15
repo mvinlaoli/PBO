@@ -40,39 +40,62 @@ public class Mahasiswa extends User{
 
     public double hitungIP(){
 
-        double total=0;
-        int jumlah=0;
+    double totalBobot = 0;
+    int jumlahMK = 0;
 
 
-        for(KRS k : Appp.daftarkrs){
+    for(KRS k : Appp.daftarkrs){
 
-            if(k.mhs == this){
 
-                total += k.nilai;
-                jumlah++;
+        if(k.mhs == this){
 
+
+            double bobot = 0;
+
+
+            if(k.nilai >= 85){
+                bobot = 4.0;
             }
+            else if(k.nilai >= 80){
+                bobot = 3.5;
+            }
+            else if(k.nilai >= 70){
+                bobot = 3.0;
+            }
+            else if(k.nilai >= 65){
+                bobot = 2.5;
+            }
+            else if(k.nilai >= 60){
+                bobot = 2.0;
+            }
+            else{
+                bobot = 0;
+            }
+
+
+
+            totalBobot += bobot;
+
+            jumlahMK++;
+
 
         }
 
-
-        if(jumlah==0)
-            return 0;
+    }
 
 
-        return total/jumlah;
+
+    if(jumlahMK == 0){
+
+        return 0;
 
     }
 
 
 
-    public void print(){
+    return totalBobot / jumlahMK;
 
-        System.out.println(
-        nim+" | "+nama
-        );
-
-    }
+}
 
 
 }
