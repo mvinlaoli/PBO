@@ -19,7 +19,7 @@ class Child extends Parent {
 
 public class Inheritance {
     public static void main(String[] args) {
-        Child child = new Child();
+        Child child = new Child();  
         child.printA();
         child.printB();
     }

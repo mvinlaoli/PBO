@@ -4,360 +4,612 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Appp {
+
+
     static Scanner sc = new Scanner(System.in);
+
+
     static ArrayList<Mahasiswa> daftarmahasiswa = new ArrayList<>();
     static ArrayList<Matakuliah> daftarmatakuliah = new ArrayList<>();
     static ArrayList<KRS> daftarkrs = new ArrayList<>();
 
+    static ArrayList<Karyawan> daftarkaryawan = new ArrayList<>();
+
+
+
     public static void main(String[] args) {
+
+
         dataDummy();
 
+
         int pilihan;
-        do {
-            System.out.println("\n===== MENU =====");
+
+
+        do{
+
+
+            System.out.println("\n===== MENU UTAMA =====");
+
             System.out.println("1. Mata Kuliah");
             System.out.println("2. Mahasiswa");
-            System.out.println("3. Mahasiswa - Mata Kuliah");
-            System.out.println("4. List Berdasarkan Mata Kuliah");
-            System.out.println("5. List Berdasarkan Mahasiswa");
+            System.out.println("3. KRS");
+            System.out.println("4. List Mata Kuliah");
+            System.out.println("5. List Mahasiswa");
+            System.out.println("6. Menu Karyawan");
+            System.out.println("7. Hitung IP Mahasiswa");
             System.out.println("0. Keluar");
-            System.out.print("Pilih : ");
-            pilihan = sc.nextInt();
 
-            switch (pilihan) {
+
+            System.out.print("Pilih : ");
+
+            pilihan=sc.nextInt();
+
+
+
+            switch(pilihan){
+
+
                 case 1:
                     menuMatakuliah();
                     break;
+
+
                 case 2:
                     menuMahasiswa();
                     break;
+
+
                 case 3:
-                    menuRelasi();
+                    menuKRS();
                     break;
+
+
                 case 4:
                     listBerdasarkanMatakuliah();
                     break;
+
+
                 case 5:
                     listBerdasarkanMahasiswa();
                     break;
+
+
+                case 6:
+                    menuKaryawan();
+                    break;
+
+
+                case 7:
+                    hitungIPMahasiswa();
+                    break;
+
+
             }
-        } while (pilihan != 0);
+
+
+
+        }while(pilihan!=0);
+
+
+
     }
 
-    static void dataDummy() {
 
-        Mahasiswa m1 = new Mahasiswa(
-                "1124035",
-                "Jolvin",
-                true);
 
-        Mahasiswa m2 = new Mahasiswa(
-                "1124036",
-                "Mychle",
-                false);
 
-        Mahasiswa m3 = new Mahasiswa(
-                "1124033",
-                "Laoli",
-                true);
+
+    static void dataDummy(){
+
+
+        Mahasiswa m1 =
+        new Mahasiswa(
+        "1124035",
+        "Jolvin",
+        true,
+        2024,
+        2028);
+
+
+        Mahasiswa m2 =
+        new Mahasiswa(
+        "1124036",
+        "Mychle",
+        true,
+        2024,
+        2028);
+
+
 
         daftarmahasiswa.add(m1);
         daftarmahasiswa.add(m2);
-        daftarmahasiswa.add(m3);
 
-        Matakuliah mk1 = new Matakuliah(
-                "IF101",
-                "Algoritma",
-                true);
 
-        Matakuliah mk2 = new Matakuliah(
-                "IF201",
-                "Struktur Data",
-                true);
 
-        Matakuliah mk3 = new Matakuliah(
-                "IF301",
-                "PBO",
-                false);
+        Matakuliah mk1 =
+        new Matakuliah(
+        "IF101",
+        "Algoritma",
+        true);
+
+
+
+        Matakuliah mk2 =
+        new Matakuliah(
+        "IF102",
+        "PBO",
+        true);
+
+
 
         daftarmatakuliah.add(mk1);
         daftarmatakuliah.add(mk2);
-        daftarmatakuliah.add(mk3);
+
+
 
         daftarkrs.add(
-                new KRS(
-                        m1,
-                        mk1,
-                        85));
+        new KRS(
+        m1,
+        mk1,
+        90));
 
-        daftarkrs.add(
-                new KRS(
-                        m3,
-                        mk2,
-                        90));
+
+
+        daftarkaryawan.add(
+        new DosenTetap(
+        "dosen@gmail.com",
+        "123",
+        "D001",
+        5000000,
+        100000,
+        10));
+
+
+
+        daftarkaryawan.add(
+        new Staff(
+        "staff@gmail.com",
+        "123",
+        "S001",
+        3000000));
+
+
+
+        daftarkaryawan.add(
+        new DosenHonorer(
+        "honor@gmail.com",
+        "123",
+        "H001",
+        150000,
+        8));
+
+
     }
 
-    static void menuMahasiswa() {
 
-        System.out.println("1. Tambah");
-        System.out.println("2. Edit");
 
-        int pil = sc.nextInt();
 
-        if (pil == 1) {
+
+
+    static void menuMahasiswa(){
+
+
+        System.out.println("\n1. Tambah");
+
+        int pil=sc.nextInt();
+
+
+
+        if(pil==1){
+
 
             sc.nextLine();
+
 
             System.out.print("NIM : ");
-            String nim = sc.nextLine();
+            String nim=sc.nextLine();
+
+
 
             System.out.print("Nama : ");
-            String nama = sc.nextLine();
+            String nama=sc.nextLine();
 
-            System.out.print("Status (true/false) : ");
-            boolean status = sc.nextBoolean();
+
+
+            System.out.print("Tahun Masuk : ");
+            int masuk=sc.nextInt();
+
+
+
+            System.out.print("Tahun Lulus : ");
+            int lulus=sc.nextInt();
+
+
 
             daftarmahasiswa.add(
-                    new Mahasiswa(
-                            nim,
-                            nama,
-                            status));
 
-            System.out.println("Mahasiswa berhasil ditambahkan");
+            new Mahasiswa(
+            nim,
+            nama,
+            true,
+            masuk,
+            lulus)
+
+            );
+
+
         }
 
-        else if (pil == 2) {
 
-            tampilDataMahasiswa();
 
-            System.out.print("Pilih : ");
-            int index = sc.nextInt() - 1;
-
-            if (index < 0 ||
-                    index >= daftarmahasiswa.size()) {
-
-                System.out.println("Data tidak ditemukan");
-                return;
-            }
-
-            sc.nextLine();
-
-            System.out.print("Nama Baru : ");
-            daftarmahasiswa.get(index).nama = sc.nextLine();
-
-            System.out.print("Status Baru : ");
-            daftarmahasiswa.get(index).status = sc.nextBoolean();
-
-            System.out.println("Data berhasil diubah");
-        }
     }
 
-    static void menuMatakuliah() {
 
-        System.out.println("1. Tambah");
-        System.out.println("2. Edit");
 
-        int pil = sc.nextInt();
 
-        if (pil == 1) {
 
-            sc.nextLine();
 
-            System.out.print("Kode : ");
-            String kode = sc.nextLine();
+    static void menuMatakuliah(){
 
-            System.out.print("Nama : ");
-            String nama = sc.nextLine();
 
-            System.out.print("Status : ");
-            boolean status = sc.nextBoolean();
+        sc.nextLine();
 
-            daftarmatakuliah.add(
-                    new Matakuliah(
-                            kode,
-                            nama,
-                            status));
 
-            System.out.println("Matakuliah berhasil ditambahkan");
-        }
+        System.out.print("Kode : ");
+        String kode=sc.nextLine();
 
-        else if (pil == 2) {
 
-            tampilDataMatakuliah();
+        System.out.print("Nama : ");
+        String nama=sc.nextLine();
 
-            System.out.print("Pilih : ");
-            int index = sc.nextInt() - 1;
 
-            if (index < 0 ||
-                    index >= daftarmatakuliah.size()) {
 
-                System.out.println("Data tidak ditemukan");
-                return;
-            }
+        daftarmatakuliah.add(
+        new Matakuliah(
+        kode,
+        nama,
+        true));
 
-            sc.nextLine();
 
-            System.out.print("Nama Baru : ");
-            daftarmatakuliah.get(index).nama = sc.nextLine();
 
-            System.out.print("Status Baru : ");
-            daftarmatakuliah.get(index).status = sc.nextBoolean();
-
-            System.out.println("Data berhasil diubah");
-        }
     }
 
-    static void menuRelasi() {
 
-        System.out.println("1. Tambah Relasi");
-        System.out.println("2. Edit Nilai");
 
-        int pil = sc.nextInt();
 
-        if (pil == 1) {
 
-            tampilDataMahasiswa();
 
-            System.out.print("Pilih Mahasiswa : ");
-            int mhs = sc.nextInt() - 1;
+    static void menuKRS(){
 
-            tampilDataMatakuliah();
 
-            System.out.print("Pilih Matakuliah : ");
-            int mk = sc.nextInt() - 1;
-
-            Mahasiswa mahasiswa = daftarmahasiswa.get(mhs);
-
-            Matakuliah matakuliah = daftarmatakuliah.get(mk);
-
-            if (!mahasiswa.status) {
-
-                System.out.println(
-                        "Mahasiswa tidak aktif");
-
-                return;
-            }
-
-            if (!matakuliah.status) {
-
-                System.out.println(
-                        "Matakuliah tidak aktif");
-
-                return;
-            }
-
-            for (KRS k : daftarkrs) {
-
-                if (k.mhs == mahasiswa &&
-                        k.matkul == matakuliah) {
-
-                    System.out.println(
-                            "Relasi sudah ada");
-
-                    return;
-                }
-            }
-
-            System.out.print("Nilai : ");
-            double nilai = sc.nextDouble();
-
-            daftarkrs.add(
-                    new KRS(
-                            mahasiswa,
-                            matakuliah,
-                            nilai));
-
-            System.out.println(
-                    "Relasi berhasil ditambahkan");
-        }
-
-        else if (pil == 2) {
-
-            editNilai();
-        }
-    }
-
-    static void editNilai() {
-
-        for (int i = 0; i < daftarkrs.size(); i++) {
-
-            KRS k = daftarkrs.get(i);
-
-            System.out.println(
-                    (i + 1)
-                            + ". "
-                            + k.mhs.nama
-                            + " - "
-                            + k.matkul.nama
-                            + " | "
-                            + k.nilai);
-        }
-
-        System.out.print("Pilih : ");
-        int pilih = sc.nextInt() - 1;
-
-        System.out.print("Nilai Baru : ");
-        daftarkrs.get(pilih).nilai = sc.nextDouble();
-    }
-
-    static void listBerdasarkanMahasiswa() {
         tampilDataMahasiswa();
-        System.out.println("Pilih Mahasiswa : ");
-        int pilih = sc.nextInt() - 1;
-        Mahasiswa m = daftarmahasiswa.get(pilih);
-        System.out.println("\nDaftar Matakuliah " + m.nama);
-        for (KRS k : daftarkrs) {
-            if (k.mhs == m) {
-                System.out.println(k.matkul.nama + " | Nilai : " + k.nilai);
 
-            }
-        }
+        System.out.print("Mahasiswa : ");
 
-    }
+        int m=sc.nextInt()-1;
 
-    static void listBerdasarkanMatakuliah() {
+
+
         tampilDataMatakuliah();
-        System.out.println("Pilih Mahasiswa : ");
-        int pilih = sc.nextInt() - 1;
-        Matakuliah mk = daftarmatakuliah.get(pilih);
-        System.out.println("\nDaftar Mahasiwa " + mk.nama);
-        for (KRS k : daftarkrs) {
-            if (k.matkul == mk) {
-                System.out.println(k.mhs.nama + "| Nilai : " + k.nilai);
+
+        System.out.print("Matkul : ");
+
+        int mk=sc.nextInt()-1;
+
+
+
+        System.out.print("Nilai : ");
+
+        double nilai=sc.nextDouble();
+
+
+
+        daftarkrs.add(
+
+        new KRS(
+        daftarmahasiswa.get(m),
+        daftarmatakuliah.get(mk),
+        nilai)
+
+        );
+
+
+
+    }
+
+
+
+
+
+
+
+    static void menuKaryawan(){
+
+
+
+        System.out.println("\n1. Tampilkan");
+
+        System.out.println("2. Tambah");
+
+        System.out.println("3. Hitung Gaji");
+
+
+        int pil=sc.nextInt();
+
+
+
+        if(pil==1){
+
+
+            for(Karyawan k:daftarkaryawan){
+
+
+                System.out.println(
+                k.NIK+
+                " | "+
+                k.type);
+
+
             }
+
+
+
         }
 
-    }
 
-    static void tampilDataMahasiswa() {
-        for (int i = 0; i < daftarmahasiswa.size(); i++) {
-            System.out.println((i + 1) + ". " + daftarmahasiswa.get(i).nama);
-        }
-    }
 
-    static void tampilDataMatakuliah() {
-        for (int i = 0; i < daftarmatakuliah.size(); i++) {
-            System.out.println((i + 1) + ". " + daftarmatakuliah.get(i).nama);
-        }
-    }
+        else if(pil==2){
 
-    static void tampilMahasiwaAktif() {
-        for (int i = 0; i < daftarmahasiswa.size(); i++) {
-            if (daftarmahasiswa.get(i).status) {
-                System.out.println((i + 1) + ". " + daftarmahasiswa.get(i).nama);
+
+            System.out.println(
+            "1 Dosen Tetap");
+
+            System.out.println(
+            "2 Dosen Honorer");
+
+            System.out.println(
+            "3 Staff");
+
+
+            int jenis=sc.nextInt();
+
+
+
+            if(jenis==1){
+
+
+                daftarkaryawan.add(
+                new DosenTetap(
+                "dt@gmail.com",
+                "123",
+                "DT01",
+                5000000,
+                100000,
+                5));
+
 
             }
-        }
 
-    }
 
-    static void tampilMatakuliahAktif() {
-        for (int i = 0; i < daftarmatakuliah.size(); i++) {
-            if (daftarmatakuliah.get(i).status) {
-                System.out.println((i + 1) + ". " + daftarmatakuliah.get(i).nama);
+
+            else if(jenis==2){
+
+
+                daftarkaryawan.add(
+                new DosenHonorer(
+                "dh@gmail.com",
+                "123",
+                "DH01",
+                200000,
+                6));
+
 
             }
+
+
+
+            else{
+
+
+                daftarkaryawan.add(
+                new Staff(
+                "st@gmail.com",
+                "123",
+                "ST01",
+                3500000));
+
+
+            }
+
+
         }
 
+
+
+        else if(pil==3){
+
+
+
+            for(Karyawan k:daftarkaryawan){
+
+
+                System.out.println(
+
+                k.NIK+
+                " Gaji = "+
+                k.hitungGaji()
+
+                );
+
+
+            }
+
+
+
+        }
+
+
+
+
     }
+
+
+
+
+
+
+    static void hitungIPMahasiswa(){
+
+
+
+        tampilDataMahasiswa();
+
+
+
+        System.out.print(
+        "Pilih : ");
+
+
+
+        int pilih=sc.nextInt()-1;
+
+
+
+        Mahasiswa m =
+        daftarmahasiswa.get(pilih);
+
+
+
+        System.out.println(
+
+        "IP "+m.nama+
+        " = "+
+        m.hitungIP()
+
+        );
+
+
+    }
+
+
+
+
+
+
+
+    static void listBerdasarkanMahasiswa(){
+
+
+        tampilDataMahasiswa();
+
+        int pilih=sc.nextInt()-1;
+
+
+        Mahasiswa m =
+        daftarmahasiswa.get(pilih);
+
+
+
+        for(KRS k:daftarkrs){
+
+
+            if(k.mhs==m){
+
+
+                System.out.println(
+                k.matkul.nama+
+                " Nilai : "+
+                k.nilai);
+
+
+            }
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+    static void listBerdasarkanMatakuliah(){
+
+
+
+        tampilDataMatakuliah();
+
+
+        int pilih=sc.nextInt()-1;
+
+
+        Matakuliah mk =
+        daftarmatakuliah.get(pilih);
+
+
+
+        for(KRS k:daftarkrs){
+
+
+            if(k.matkul==mk){
+
+
+                System.out.println(
+                k.mhs.nama);
+
+            }
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+    static void tampilDataMahasiswa(){
+
+
+        for(int i=0;i<daftarmahasiswa.size();i++){
+
+
+            System.out.println(
+            (i+1)+". "+
+            daftarmahasiswa.get(i).nama);
+
+
+        }
+
+
+    }
+
+
+
+
+
+
+    static void tampilDataMatakuliah(){
+
+
+        for(int i=0;i<daftarmatakuliah.size();i++){
+
+
+            System.out.println(
+            (i+1)+". "+
+            daftarmatakuliah.get(i).nama);
+
+
+        }
+
+
+    }
+
+
+
 }
