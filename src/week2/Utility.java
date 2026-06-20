@@ -1,16 +1,36 @@
 package week2;
 
+
 public class Utility {
 
-    public static void printNamaMatkul(KRS k) {
+
+
+    public static void printNamaMatkul(KRS k){
+
+
         System.out.println(
-                k.mhs.nama + " - " +
-                        k.matkul.nama);
+
+        k.mahasiswa.nama
+        +" - "
+        +k.matakuliah.nama);
+
+
     }
 
-    public static void printNimKode(KRS k) {
+
+
+    public static void printNimKode(KRS k){
+
+
         System.out.println(
-                k.mhs.nim + " - " +
-                        k.matkul.kode);
+
+        k.mahasiswa.nim
+        +" - "
+        +k.matakuliah.kode);
+
+
     }
+
+
+
 }

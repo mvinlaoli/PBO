@@ -1,614 +1,722 @@
 package week2;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class Appp {
 
 
-    static Scanner sc = new Scanner(System.in);
+static Scanner sc = new Scanner(System.in);
 
 
-    static ArrayList<Mahasiswa> daftarmahasiswa = new ArrayList<>();
-    static ArrayList<Matakuliah> daftarmatakuliah = new ArrayList<>();
-    static ArrayList<KRS> daftarkrs = new ArrayList<>();
 
-    static ArrayList<Karyawan> daftarkaryawan = new ArrayList<>();
+static ArrayList<Mahasiswa> mahasiswaList
+        = new ArrayList<>();
 
 
+static ArrayList<Matakuliah> matkulList
+        = new ArrayList<>();
 
-    public static void main(String[] args) {
 
+static ArrayList<KRS> krsList
+        = new ArrayList<>();
 
-        dataDummy();
 
 
-        int pilihan;
 
 
-        do{
+public static void main(String[] args){
 
 
-            System.out.println("\n===== MENU UTAMA =====");
 
-            System.out.println("1. Mata Kuliah");
-            System.out.println("2. Mahasiswa");
-            System.out.println("3. KRS");
-            System.out.println("4. List Mata Kuliah");
-            System.out.println("5. List Mahasiswa");
-            System.out.println("6. Menu Karyawan");
-            System.out.println("7. Hitung IP Mahasiswa");
-            System.out.println("0. Keluar");
+dataDummy();
 
 
-            System.out.print("Pilih : ");
 
-            pilihan=sc.nextInt();
+int pilih;
 
 
 
-            switch(pilihan){
+do{
 
 
-                case 1:
-                    menuMatakuliah();
-                    break;
+System.out.println("\n===== MENU =====");
 
+System.out.println("1. Mata Kuliah");
 
-                case 2:
-                    menuMahasiswa();
-                    break;
+System.out.println("2. Mahasiswa");
 
+System.out.println("3. Mahasiswa - Mata Kuliah");
 
-                case 3:
-                    menuKRS();
-                    break;
+System.out.println("4. List Berdasarkan Mata Kuliah");
 
+System.out.println("5. List Berdasarkan Mahasiswa");
 
-                case 4:
-                    listBerdasarkanMatakuliah();
-                    break;
+System.out.println("0. Keluar");
 
 
-                case 5:
-                    listBerdasarkanMahasiswa();
-                    break;
 
+System.out.print("Pilih : ");
 
-                case 6:
-                    menuKaryawan();
-                    break;
+pilih=sc.nextInt();
 
 
-                case 7:
-                    hitungIPMahasiswa();
-                    break;
 
 
-            }
+switch(pilih){
 
 
+case 1:
+    menuMatkul();
+    break;
 
-        }while(pilihan!=0);
 
 
+case 2:
+    menuMahasiswa();
+    break;
 
-    }
 
 
+case 3:
+    menuRelasi();
+    break;
 
 
 
-    static void dataDummy(){
+case 4:
+    listMatkul();
+    break;
 
 
-        Mahasiswa m1 =
-        new Mahasiswa(
-        "1124035",
-        "Jolvin",
-        true,
-        2024,
-        2028);
 
+case 5:
+    listMahasiswa();
+    break;
 
-        Mahasiswa m2 =
-        new Mahasiswa(
-        "1124036",
-        "Mychle",
-        true,
-        2024,
-        2028);
 
+}
 
 
-        daftarmahasiswa.add(m1);
-        daftarmahasiswa.add(m2);
 
+}while(pilih!=0);
 
 
-        Matakuliah mk1 =
-        new Matakuliah(
-        "IF101",
-        "Algoritma",
-        true);
 
+}
 
 
-        Matakuliah mk2 =
-        new Matakuliah(
-        "IF102",
-        "PBO",
-        true);
 
 
 
-        daftarmatakuliah.add(mk1);
-        daftarmatakuliah.add(mk2);
 
 
 
-        daftarkrs.add(
-        new KRS(
-        m1,
-        mk1,
-        90));
 
+static void dataDummy(){
 
 
-        daftarkaryawan.add(
-        new DosenTetap(
-        "dosen@gmail.com",
-        "123",
-        "D001",
-        5000000,
-        100000,
-        10));
 
+Mahasiswa m1 =
+new Mahasiswa(
+"1124035",
+"Jolvin",
+true);
 
 
-        daftarkaryawan.add(
-        new Staff(
-        "staff@gmail.com",
-        "123",
-        "S001",
-        3000000));
 
+Mahasiswa m2 =
+new Mahasiswa(
+"1124036",
+"Mychle",
+true);
 
 
-        daftarkaryawan.add(
-        new DosenHonorer(
-        "honor@gmail.com",
-        "123",
-        "H001",
-        150000,
-        8));
 
+Mahasiswa m3 =
+new Mahasiswa(
+"1124037",
+"Laoli",
+false);
 
-    }
 
 
+mahasiswaList.add(m1);
+mahasiswaList.add(m2);
+mahasiswaList.add(m3);
 
 
 
 
-    static void menuMahasiswa(){
 
+Matakuliah mk1 =
+new Matakuliah(
+"IF101",
+"Algoritma",
+true);
 
-        System.out.println("\n1. Tambah");
 
-        int pil=sc.nextInt();
 
+Matakuliah mk2 =
+new Matakuliah(
+"IF102",
+"PBO",
+true);
 
 
-        if(pil==1){
 
+Matakuliah mk3 =
+new Matakuliah(
+"IF103",
+"Basis Data",
+false);
 
-            sc.nextLine();
 
 
-            System.out.print("NIM : ");
-            String nim=sc.nextLine();
+matkulList.add(mk1);
+matkulList.add(mk2);
+matkulList.add(mk3);
 
 
 
-            System.out.print("Nama : ");
-            String nama=sc.nextLine();
 
 
+krsList.add(
+new KRS(
+m1,
+mk1,
+90));
 
-            System.out.print("Tahun Masuk : ");
-            int masuk=sc.nextInt();
 
 
+krsList.add(
+new KRS(
+m1,
+mk2,
+85));
 
-            System.out.print("Tahun Lulus : ");
-            int lulus=sc.nextInt();
 
 
+krsList.add(
+new KRS(
+m2,
+mk1,
+80));
 
-            daftarmahasiswa.add(
 
-            new Mahasiswa(
-            nim,
-            nama,
-            true,
-            masuk,
-            lulus)
 
-            );
+}
 
 
-        }
 
 
 
-    }
 
 
 
 
+static void menuMahasiswa(){
 
 
-    static void menuMatakuliah(){
 
+System.out.println("1. Tambah");
 
-        sc.nextLine();
+System.out.println("2. Edit");
 
 
-        System.out.print("Kode : ");
-        String kode=sc.nextLine();
 
+int p=sc.nextInt();
 
-        System.out.print("Nama : ");
-        String nama=sc.nextLine();
 
 
 
-        daftarmatakuliah.add(
-        new Matakuliah(
-        kode,
-        nama,
-        true));
+if(p==1){
 
 
+sc.nextLine();
 
-    }
 
+System.out.print("NIM : ");
 
+String nim=sc.nextLine();
 
 
 
+System.out.print("Nama : ");
 
-    static void menuKRS(){
+String nama=sc.nextLine();
 
 
-        tampilDataMahasiswa();
 
-        System.out.print("Mahasiswa : ");
+mahasiswaList.add(
 
-        int m=sc.nextInt()-1;
+new Mahasiswa(
+nim,
+nama,
+true)
 
+);
 
 
-        tampilDataMatakuliah();
 
-        System.out.print("Matkul : ");
+}
 
-        int mk=sc.nextInt()-1;
 
 
 
-        System.out.print("Nilai : ");
 
-        double nilai=sc.nextDouble();
+else if(p==2){
 
 
 
-        daftarkrs.add(
+tampilMahasiswa();
 
-        new KRS(
-        daftarmahasiswa.get(m),
-        daftarmatakuliah.get(mk),
-        nilai)
 
-        );
+System.out.print("Pilih : ");
 
+int i=sc.nextInt()-1;
 
 
-    }
 
+sc.nextLine();
 
 
+System.out.print("Nama baru : ");
 
+mahasiswaList.get(i).nama=sc.nextLine();
 
 
 
-    static void menuKaryawan(){
+}
 
 
 
-        System.out.println("\n1. Tampilkan");
 
-        System.out.println("2. Tambah");
+}
 
-        System.out.println("3. Hitung Gaji");
 
 
-        int pil=sc.nextInt();
 
 
 
-        if(pil==1){
 
 
-            for(Karyawan k:daftarkaryawan){
 
 
-                System.out.println(
-                k.NIK+
-                " | "+
-                k.type);
+static void menuMatkul(){
 
 
-            }
 
+System.out.println("1. Tambah");
 
+System.out.println("2. Edit");
 
-        }
 
 
+int p=sc.nextInt();
 
-        else if(pil==2){
 
 
-            System.out.println(
-            "1 Dosen Tetap");
 
-            System.out.println(
-            "2 Dosen Honorer");
 
-            System.out.println(
-            "3 Staff");
+if(p==1){
 
 
-            int jenis=sc.nextInt();
+sc.nextLine();
 
 
 
-            if(jenis==1){
+System.out.print("Kode : ");
 
+String kode=sc.nextLine();
 
-                daftarkaryawan.add(
-                new DosenTetap(
-                "dt@gmail.com",
-                "123",
-                "DT01",
-                5000000,
-                100000,
-                5));
 
 
-            }
+System.out.print("Nama : ");
 
+String nama=sc.nextLine();
 
 
-            else if(jenis==2){
 
+matkulList.add(
 
-                daftarkaryawan.add(
-                new DosenHonorer(
-                "dh@gmail.com",
-                "123",
-                "DH01",
-                200000,
-                6));
+new Matakuliah(
+kode,
+nama,
+true)
 
+);
 
-            }
 
+}
 
 
-            else{
 
 
-                daftarkaryawan.add(
-                new Staff(
-                "st@gmail.com",
-                "123",
-                "ST01",
-                3500000));
+else if(p==2){
 
 
-            }
 
+tampilMatkul();
 
-        }
 
+System.out.print("Pilih : ");
 
+int i=sc.nextInt()-1;
 
-        else if(pil==3){
 
 
+sc.nextLine();
 
-            for(Karyawan k:daftarkaryawan){
 
 
-                System.out.println(
+System.out.print("Nama baru : ");
 
-                k.NIK+
-                " Gaji = "+
-                k.hitungGaji()
+matkulList.get(i).nama=sc.nextLine();
 
-                );
 
 
-            }
+}
 
 
 
-        }
 
+}
 
 
 
-    }
 
 
 
 
 
 
-    static void hitungIPMahasiswa(){
 
+static void menuRelasi(){
 
 
-        tampilDataMahasiswa();
 
+System.out.println("1. Tambah");
 
+System.out.println("2. Edit Nilai");
 
-        System.out.print(
-        "Pilih : ");
 
 
+int p=sc.nextInt();
 
-        int pilih=sc.nextInt()-1;
 
 
 
-        Mahasiswa m =
-        daftarmahasiswa.get(pilih);
 
+if(p==1){
 
 
-        System.out.println(
 
-        "IP "+m.nama+
-        " = "+
-        m.hitungIP()
+tampilMahasiswa();
 
-        );
 
 
-    }
+System.out.print("Pilih Mahasiswa : ");
 
+int m=sc.nextInt()-1;
 
 
 
 
 
+tampilMatkul();
 
-    static void listBerdasarkanMahasiswa(){
 
 
-        tampilDataMahasiswa();
+System.out.print("Pilih Matkul : ");
 
-        int pilih=sc.nextInt()-1;
+int mk=sc.nextInt()-1;
 
 
-        Mahasiswa m =
-        daftarmahasiswa.get(pilih);
 
 
 
-        for(KRS k:daftarkrs){
+Mahasiswa mahasiswa =
+mahasiswaList.get(m);
 
 
-            if(k.mhs==m){
 
+Matakuliah matkul =
+matkulList.get(mk);
 
-                System.out.println(
-                k.matkul.nama+
-                " Nilai : "+
-                k.nilai);
 
 
-            }
 
 
-        }
+if(!mahasiswa.status){
 
 
+System.out.println(
+"Mahasiswa tidak aktif");
 
-    }
+return;
 
 
+}
 
 
 
+if(!matkul.status){
 
-    static void listBerdasarkanMatakuliah(){
 
+System.out.println(
+"Matakuliah tidak aktif");
 
+return;
 
-        tampilDataMatakuliah();
 
+}
 
-        int pilih=sc.nextInt()-1;
 
 
-        Matakuliah mk =
-        daftarmatakuliah.get(pilih);
 
 
+System.out.print("Nilai : ");
 
-        for(KRS k:daftarkrs){
+double nilai=sc.nextDouble();
 
 
-            if(k.matkul==mk){
 
 
-                System.out.println(
-                k.mhs.nama);
 
-            }
+krsList.add(
 
-        }
+new KRS(
+mahasiswa,
+matkul,
+nilai)
 
+);
 
-    }
 
 
 
 
+System.out.println(
+"Relasi berhasil");
 
 
 
-    static void tampilDataMahasiswa(){
 
 
-        for(int i=0;i<daftarmahasiswa.size();i++){
+}
 
 
-            System.out.println(
-            (i+1)+". "+
-            daftarmahasiswa.get(i).nama);
 
 
-        }
 
 
-    }
+else if(p==2){
 
 
 
+for(int i=0;i<krsList.size();i++){
 
 
+KRS k=krsList.get(i);
 
-    static void tampilDataMatakuliah(){
 
 
-        for(int i=0;i<daftarmatakuliah.size();i++){
+System.out.println(
 
+(i+1)+". "
++k.mahasiswa.nama+
+" - "+
+k.matakuliah.nama+
+" nilai "
++k.nilai);
 
-            System.out.println(
-            (i+1)+". "+
-            daftarmatakuliah.get(i).nama);
 
+}
 
-        }
 
 
-    }
+System.out.print("Pilih : ");
+
+int i=sc.nextInt()-1;
+
+
+
+System.out.print("Nilai baru : ");
+
+krsList.get(i).nilai=sc.nextDouble();
+
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+static void listMatkul(){
+
+
+
+tampilMatkul();
+
+
+
+System.out.print("Pilih : ");
+
+int pilih=sc.nextInt()-1;
+
+
+
+Matakuliah mk =
+matkulList.get(pilih);
+
+
+
+
+
+for(KRS k:krsList){
+
+
+
+if(k.matakuliah==mk){
+
+
+
+Utility.printNamaMatkul(k);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+static void listMahasiswa(){
+
+
+
+tampilMahasiswa();
+
+
+
+System.out.print("Pilih : ");
+
+int pilih=sc.nextInt()-1;
+
+
+
+Mahasiswa m =
+mahasiswaList.get(pilih);
+
+
+
+
+
+for(KRS k:krsList){
+
+
+
+if(k.mahasiswa==m){
+
+
+Utility.printNimKode(k);
+
+
+}
+
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+static void tampilMahasiswa(){
+
+
+
+for(int i=0;i<mahasiswaList.size();i++){
+
+
+
+System.out.println(
+
+(i+1)+". "
++mahasiswaList.get(i).nama);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+static void tampilMatkul(){
+
+
+
+for(int i=0;i<matkulList.size();i++){
+
+
+
+System.out.println(
+
+(i+1)+". "
++matkulList.get(i).nama);
+
+
+}
+
+
+
+}
 
 
 

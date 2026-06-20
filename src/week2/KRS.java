@@ -1,18 +1,32 @@
 package week2;
 
+
 public class KRS {
 
-    Mahasiswa mhs;
-    Matakuliah matkul;
+
+    Mahasiswa mahasiswa;
+
+    Matakuliah matakuliah;
+
     double nilai;
 
-    public KRS(
-            Mahasiswa mhs,
-            Matakuliah matkul,
-            double nilai) {
 
-        this.mhs = mhs;
-        this.matkul = matkul;
-        this.nilai = nilai;
+
+    public KRS(
+            Mahasiswa mahasiswa,
+            Matakuliah matakuliah,
+            double nilai){
+
+
+        this.mahasiswa=mahasiswa;
+
+        this.matakuliah=matakuliah;
+
+        this.nilai=nilai;
+
+
     }
+
+
+
 }

@@ -1,101 +1,37 @@
 package week2;
 
-
-public class Mahasiswa extends User{
+public class Mahasiswa {
 
 
     String nim;
     String nama;
     boolean status;
 
-    int tahunmasuk;
-    int tahunkelulusan;
-
-
 
     public Mahasiswa(
-        String nim,
-        String nama,
-        boolean status,
-        int tahunmasuk,
-        int tahunkelulusan
-    ){
-
-        super(
-        "",
-        "",
-        TypeUser.MAHASISWA
-        );
+            String nim,
+            String nama,
+            boolean status){
 
 
-        this.nim=nim;
-        this.nama=nama;
-        this.status=status;
-        this.tahunmasuk=tahunmasuk;
-        this.tahunkelulusan=tahunkelulusan;
+        this.nim = nim;
+        this.nama = nama;
+        this.status = status;
 
     }
 
 
 
-    public double hitungIP(){
-
-    double totalBobot = 0;
-    int jumlahMK = 0;
+    public void print(){
 
 
-    for(KRS k : Appp.daftarkrs){
+        System.out.println(
+        nim+" | "
+        +nama+" | "
+        +(status?"Aktif":"Tidak Aktif"));
 
-
-        if(k.mhs == this){
-
-
-            double bobot = 0;
-
-
-            if(k.nilai >= 85){
-                bobot = 4.0;
-            }
-            else if(k.nilai >= 80){
-                bobot = 3.5;
-            }
-            else if(k.nilai >= 70){
-                bobot = 3.0;
-            }
-            else if(k.nilai >= 65){
-                bobot = 2.5;
-            }
-            else if(k.nilai >= 60){
-                bobot = 2.0;
-            }
-            else{
-                bobot = 0;
-            }
-
-
-
-            totalBobot += bobot;
-
-            jumlahMK++;
-
-
-        }
 
     }
-
-
-
-    if(jumlahMK == 0){
-
-        return 0;
-
-    }
-
-
-
-    return totalBobot / jumlahMK;
-
-}
 
 
 }
